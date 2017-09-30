@@ -1,5 +1,5 @@
 
-# stringy v0.0.2 
+# stringy v0.0.3 
 
 Stringify a value into a minimal, readable format.
 
