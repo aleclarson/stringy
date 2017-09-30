@@ -36,5 +36,10 @@ inspect({
 // user =
 //   name = "Alec"
 //   age = 23
+
+inspect(function() {
+  return 1 + 1
+})
+// [object Function]
 ```
 

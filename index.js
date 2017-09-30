@@ -1,16 +1,23 @@
 
 module.exports = stringy
 
+var objectRE = /^(object|function)$/
+var toString = Object.prototype.toString
+
 function stringy(value, depth) {
-  if (value && value.constructor === Object) {
-    return formatObject(value, depth || 0)
-  } else if (Array.isArray(value)) {
-    return formatArray(value, depth || 0)
-  } else if (value !== undefined) {
-    return JSON.stringify(value)
-  } else {
-    return 'undefined'
+  if (value) {
+    if (value.constructor === Object) {
+      return formatObject(value, depth || 0)
+    } else if (Array.isArray(value)) {
+      return formatArray(value, depth || 0)
+    } else if (objectRE.test(typeof value)) {
+      return toString.call(value)
+    }
   }
+  if (value !== undefined) {
+    return JSON.stringify(value)
+  }
+  return 'undefined'
 }
 
 function formatObject(obj, depth) {
