@@ -21,27 +21,33 @@ function stringy(value, depth) {
 }
 
 function formatObject(obj, depth) {
-  var entries = []
-  if (depth > 0) {
-    entries.push('')
-  }
+  var result = []
   for (var key in obj) {
     var value = obj[key]
-    entries.push(indent(depth, key + ' = ' + stringy(value, depth + 1)))
+    result.push(indent(depth, key + ' = ' + stringy(value, depth + 1)))
   }
-  return entries.join('\n')
+  if (!result.length) {
+    return '{}'
+  }
+  if (depth > 0) {
+    result.unshift('')
+  }
+  return result.join('\n')
 }
 
 function formatArray(arr, depth) {
-  var entries = []
-  if (depth > 0) {
-    entries.push('')
-  }
+  var result = []
   for (var i = 0; i < arr.length; i++) {
     var value = arr[i]
-    entries.push(indent(depth, '- ' + stringy(value, depth + 1)))
+    result.push(indent(depth, '- ' + stringy(value, depth + 1)))
   }
-  return entries.join('\n')
+  if (!result.length) {
+    return '[]'
+  }
+  if (depth > 0) {
+    result.unshift('')
+  }
+  return result.join('\n')
 }
 
 function indent(depth, string) {
