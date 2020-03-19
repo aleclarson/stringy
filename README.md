@@ -1,9 +1,9 @@
-# stringy
+# @alloc/stringy
 
 Stringify a value into a minimal, readable format.
 
 ```js
-var stringy = require('stringy')
+var stringy = require('@alloc/stringy')
 
 function inspect(value) {
   console.log(stringy(value))
